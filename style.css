@@ -1160,20 +1160,21 @@ footer {
 }
 
 .splash-content h1 {
-    font-size: clamp(42px, 8vw, 90px);
-    font-weight: 900;
-    letter-spacing: -4px;
-    background: linear-gradient(
-        135deg,
-        var(--purple),
-        var(--pink),
-        var(--blue)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+  margin: 0;
+  color: white;
+  font-size: clamp(42px, 9vw, 100px);
+  font-weight: 900;
+  letter-spacing: 8px;
 
+  animation: splashCrystalClear 3.7s ease forwards;
+  transform: perspective(600px) rotateX(4deg) rotateY(-3deg);
+transform-style: preserve-3d;
+
+  text-shadow:
+    0 0 10px #ffffff,
+    0 0 25px #a66cff,
+    0 0 55px #713cff;
+}
 .splash-content p {
     margin-top: 12px;
     color: var(--muted);
@@ -1277,6 +1278,41 @@ footer {
         transform: scale(1);
     }
 }
+@keyframes splashCrystalClear {
+  0% {
+    filter: blur(5px);
+    text-shadow:
+      0 0 18px #ffffff,
+      0 0 40px #a66cff,
+      0 0 80px #713cff;
+  }
+
+  65% {
+    filter: blur(3px);
+    text-shadow:
+      0 0 14px #ffffff,
+      0 0 32px #a66cff,
+      0 0 65px #713cff;
+  }
+
+  90% {
+    filter: blur(0.8px);
+    text-shadow:
+      0 0 8px #ffffff,
+      0 0 18px #a66cff,
+      0 0 35px #713cff;
+  }
+
+  100% {
+  filter: blur(0);
+
+  text-shadow:
+    1px 1px 0 #8b5cf6,
+    2px 2px 0 #7444d8,
+    3px 3px 0 #5b32b5,
+    0 0 12px rgba(166, 108, 255, 0.35);
+}
+}
 
 @keyframes splashTextReveal {
     from {
@@ -1378,4 +1414,10 @@ footer {
     .social-links {
         justify-content: flex-start;
     }
+}
+/* Taller Behind the Build cards */
+.evidence-card {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
 }
