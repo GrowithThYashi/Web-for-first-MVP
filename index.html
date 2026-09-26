@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Box Escape | My Game Development Journey</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- SPLASH SCREEN -->
+  <div id="splash-screen">
+    <div class="sparkles">
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+      <span>✧</span>
+      <span>✦</span>
+      <span>✧</span>
+    </div>
+
+    <div class="splash-content">
+      <p class="splash-small">WELCOME TO MY</p>
+      <h1>BOX <span>ESCAPE</span></h1>
+      <p class="splash-subtitle">GAME DEVELOPMENT JOURNEY</p>
+    </div>
+  </div>
+
+  <style>
+    /* SPLASH SCREEN DESIGN */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, #34205f 0%, #120b24 45%, #07040f 100%);
+      animation: splashFadeOut 1s ease 3.8s forwards;
+    }
+
+    .splash-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: splashZoom 2s ease forwards;
+    }
+
+    .splash-small {
+      margin: 0 0 12px;
+      color: #cdbbff;
+      font-size: 12px;
+      letter-spacing: 5px;
+      animation: splashTextReveal 1.2s ease forwards;
+    }
+
+    .splash-content h1 {
+      margin: 0;
+      color: white;
+      font-size: clamp(42px, 9vw, 100px);
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-shadow:
+        0 0 10px #ffffff,
+        0 0 25px #a66cff,
+        0 0 55px #713cff;
+    }
+
+    .splash-content h1 span {
+      color: #b987ff;
+    }
+
+    .splash-subtitle {
+      margin-top: 18px;
+      color: #e4d8ff;
+      font-size: 13px;
+      letter-spacing: 4px;
+      animation: splashTextReveal 1.6s ease forwards;
+    }
+
+    .sparkles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .sparkles span {
+      position: absolute;
+      color: white;
+      font-size: 24px;
+      opacity: 0;
+      text-shadow:
+        0 0 8px white,
+        0 0 20px #b987ff,
+        0 0 35px #713cff;
+      animation: sparkleBurst 2.8s ease-in-out infinite;
+    }
+
+    .sparkles span:nth-child(1) {
+      top: 15%;
+      left: 18%;
+      animation-delay: 0.2s;
+    }
+
+    .sparkles span:nth-child(2) {
+      top: 25%;
+      left: 75%;
+      animation-delay: 0.6s;
+    }
+
+    .sparkles span:nth-child(3) {
+      top: 70%;
+      left: 15%;
+      animation-delay: 1s;
+    }
+
+    .sparkles span:nth-child(4) {
+      top: 78%;
+      left: 82%;
+      animation-delay: 1.4s;
+    }
+
+    .sparkles span:nth-child(5) {
+      top: 12%;
+      left: 50%;
+      animation-delay: 1.8s;
+    }
+
+    .sparkles span:nth-child(6) {
+      top: 85%;
+      left: 48%;
+      animation-delay: 2.2s;
+    }
+
+    .sparkles span:nth-child(7) {
+      top: 45%;
+      left: 8%;
+      animation-delay: 0.8s;
+    }
+
+    .sparkles span:nth-child(8) {
+      top: 50%;
+      left: 90%;
+      animation-delay: 1.2s;
+    }
+
+    .sparkles span:nth-child(9) {
+      top: 35%;
+      left: 30%;
+      animation-delay: 1.6s;
+    }
+
+    .sparkles span:nth-child(10) {
+      top: 65%;
+      left: 68%;
+      animation-delay: 2s;
+    }
+
+    .sparkles span:nth-child(11) {
+      top: 18%;
+      left: 88%;
+      animation-delay: 2.4s;
+    }
+
+    .sparkles span:nth-child(12) {
+      top: 82%;
+      left: 28%;
+      animation-delay: 2.8s;
+    }
+
+    @keyframes sparkleBurst {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) rotate(0deg);
+      }
+
+      40% {
+        opacity: 1;
+        transform: scale(1.5) rotate(90deg);
+      }
+
+      70% {
+        opacity: 0.8;
+        transform: scale(0.8) rotate(180deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0.2) rotate(360deg);
+      }
+    }
+
+    @keyframes splashZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.65);
+      }
+
+      60% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes splashTextReveal {
+      0% {
+        opacity: 0;
+        letter-spacing: 12px;
+      }
+
+      100% {
+        opacity: 1;
+        letter-spacing: 4px;
+      }
+    }
+
+    @keyframes splashFadeOut {
+      0% {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #splash-screen,
+      .splash-content,
+      .sparkles span {
+        animation: none;
+      }
+
+      #splash-screen {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="logo">
+      <span>BOX</span> ESCAPE
+    </div>
+
+    <nav>
+      <a href="#journey">Journey</a>
+      <a href="#versions">Versions</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <a
+      class="nav-button"
+      href="https://growiththyashi.github.io/BoxEscape/"
+      target="_blank"
+    >
+      Play Game ↗
+    </a>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+        <p class="eyebrow">A STUDENT GAME DEVELOPMENT JOURNEY</p>
+
+        <h1>
+          From one simple idea
+          <span>to a playable game.</span>
+        </h1>
+
+        <p class="hero-description">
+          Box Escape is my first MVP game project.
+          I built it to understand how an idea can become working software
+          through experimentation, AI assistance, bugs, testing and iteration.
+        </p>
+
+        <div class="hero-buttons">
+          <a
+            class="primary-button"
+            href="https://growiththyashi.github.io/BoxEscape/"
+            target="_blank"
+          >
+            Play Current Game
+          </a>
+
+          <a class="secondary-button" href="#journey">
+            Explore My Journey ↓
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <strong>05</strong>
+            <span>Versions explored</span>
+          </div>
+
+          <div>
+            <strong>06</strong>
+            <span>Future 3D experiment</span>
+          </div>
+
+          <div>
+            <strong>01</strong>
+            <span>Original game idea</span>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 3D DECORATION -->
+      <div class="hero-visual">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+
+        <div class="cube">
+          <div class="cube-face front">BOX</div>
+          <div class="cube-face back">ESCAPE</div>
+          <div class="cube-face right">01</div>
+          <div class="cube-face left">02</div>
+          <div class="cube-face top">PLAY</div>
+          <div class="cube-face bottom">BUILD</div>
+        </div>
+
+        <div class="floating-label label-one">
+          <span></span> MVP PROJECT
+        </div>
+
+        <div class="floating-label label-two">
+          <span></span> VERSION 06: 3D
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- PROJECT IDEA -->
+    <section class="section intro-section" id="journey">
+
+      <div class="section-heading">
+        <p class="eyebrow">01 / THE BEGINNING</p>
+
+        <h2>
+          I was not trying to build
+          <span>the perfect game.</span>
+        </h2>
+      </div>
+
+      <div class="intro-grid">
+
+        <div class="large-text">
+          <p>
+            I had a simple idea:
+            control a box and avoid falling objects.
+          </p>
+
+          <p>
+            My goal was to turn that idea into working software within a few
+            hours and understand the process of building a real project.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <span class="card-number">01</span>
+          <h3>The original goal</h3>
+
+          <p>
+            Build a playable MVP quickly, test it, publish it and learn from
+            the process.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <span class="card-number">02</span>
+          <h3>The real challenge</h3>
+
+          <p>
+            Turning ideas into working code, understanding bugs and improving
+            the project without breaking the previous version.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- VERSION TIMELINE -->
+    <section class="section" id="versions">
+
+      <div class="section-heading">
+        <p class="eyebrow">02 / DEVELOPMENT TIMELINE</p>
+
+        <h2>
+          Six versions.
+          <span>One learning journey.</span>
+        </h2>
+
+        <p>
+          Select a version to explore what changed, what I learned and what
+          I plan to build next.
+        </p>
+      </div>
+
+
+      <div class="version-selector">
+
+        <button class="version-button active" data-version="1">
+          V1
+        </button>
+
+        <button class="version-button" data-version="2">
+          V2
+        </button>
+
+        <button class="version-button" data-version="3">
+          V3
+        </button>
+
+        <button class="version-button" data-version="4">
+          V4
+        </button>
+
+        <button class="version-button" data-version="5">
+          V5
+        </button>
+
+        <button class="version-button" data-version="6">
+          V6
+        </button>
+
+      </div>
+
+
+      <div class="version-display">
+
+        <div class="version-number">
+          <span>VERSION</span>
+          <strong id="versionNumber">01</strong>
+        </div>
+
+        <div class="version-content">
+
+          <p class="version-status" id="versionStatus">
+            COMPLETED · FIRST MVP
+          </p>
+
+          <h3 id="versionTitle">
+            From idea to playable game
+          </h3>
+
+          <p id="versionDescription">
+            The first version focused on making the basic idea playable:
+            moving a box and avoiding falling objects.
+          </p>
+
+          <div class="version-details">
+
+            <div>
+              <h4>What changed</h4>
+              <p id="versionChanges">
+                Created the first playable prototype with basic movement,
+                falling objects and a score system.
+              </p>
+            </div>
+
+            <div>
+              <h4>What I learned</h4>
+              <p id="versionLearning">
+                Basic HTML, CSS, JavaScript, game logic and browser testing.
+              </p>
+            </div>
+
+            <div>
+              <h4>My biggest challenge</h4>
+              <p id="versionChallenge">
+                Turning the idea into code that actually worked.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="version-actions">
+
+            <a
+              class="primary-button"
+              href="https://growiththyashi.github.io/BoxEscape/"
+              target="_blank"
+            >
+              Play Current Build ↗
+            </a>
+
+            <button class="secondary-button" id="showCodeButton">
+              View Version Notes
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <p class="small-note">
+        Older versions can be documented using screenshots, code snippets,
+        videos and development notes even if they do not have separate live
+        links.
+      </p>
+
+    </section>
+
+
+    <!-- EVIDENCE SECTION -->
+    <section class="section evidence-section">
+
+      <div class="section-heading">
+        <p class="eyebrow">03 / PROOF OF PROGRESS</p>
+
+        <h2>
+          Not just claims.
+          <span>Actual evidence.</span>
+        </h2>
+      </div>
+
+      <div class="evidence-grid">
+
+        <article class="evidence-card">
+          <div class="evidence-icon">▣</div>
+          <h3>Game screenshots</h3>
+          <p>
+            Screenshots from different stages of the project showing how the
+            visuals and gameplay changed.
+          </p>
+
+          <!-- Replace this with your screenshot -->
+          <div class="image-placeholder">
+            Add Version Screenshot
+          </div>
+        </article>
+
+        <article class="evidence-card">
+          <div class="evidence-icon">{"<>"}</div>
+          <h3>Code archive</h3>
+          <p>
+            Selected HTML, CSS and JavaScript snippets from the versions.
+            The code can be shown without hosting every old build.
+          </p>
+
+          <button class="small-button" id="openArchiveButton">
+            Open Code Archive
+          </button>
+        </article>
+
+        <article class="evidence-card">
+          <div class="evidence-icon">↻</div>
+          <h3>Bug and recovery notes</h3>
+          <p>
+            Some changes caused crashes or unexpected behavior. I learned to
+            test carefully, undo broken changes and improve the prompts.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- AI WORKFLOW -->
+    <section class="section ai-section">
+
+      <div class="section-heading">
+        <p class="eyebrow">04 / HOW I USED AI</p>
+
+        <h2>
+          AI helped write code.
+          <span>I still had to build the project.</span>
+        </h2>
+      </div>
+
+      <div class="ai-grid">
+
+        <div class="ai-step">
+          <span>01</span>
+          <h3>Describe the idea</h3>
+          <p>
+            I explained the gameplay, design and features I wanted.
+          </p>
+        </div>
+
+        <div class="ai-step">
+          <span>02</span>
+          <h3>Test the result</h3>
+          <p>
+            I opened the game, tested the controls and checked whether the
+            result matched my idea.
+          </p>
+        </div>
+
+        <div class="ai-step">
+          <span>03</span>
+          <h3>Find the problems</h3>
+          <p>
+            When the game crashed or behaved incorrectly, I identified what
+            changed and described the problem to AI.
+          </p>
+        </div>
+
+        <div class="ai-step">
+          <span>04</span>
+          <h3>Iterate carefully</h3>
+          <p>
+            I reverted broken changes, tried new prompts and continued
+            improving the project.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ANALYTICS SECTION -->
+<section id="analytics" class="analytics-section">
+
+    <div class="section-heading">
+        <p class="eyebrow">LIVE PROJECT DATA</p>
+
+        <h2>Box Escape Analytics</h2>
+
+        <p class="section-subtitle">
+            A snapshot of how players interacted with Box Escape.
+        </p>
+    </div>
+
+
+    <!-- Main analytics cards -->
+    <div class="analytics-cards">
+
+        <div class="analytics-card">
+            <span class="analytics-label">Active Users</span>
+            <strong>17</strong>
+            <small>Players reached</small>
+        </div>
+
+        <div class="analytics-card">
+            <span class="analytics-label">New Users</span>
+            <strong>17</strong>
+            <small>First-time visitors</small>
+        </div>
+
+        <div class="analytics-card">
+            <span class="analytics-label">Page Views</span>
+            <strong>36</strong>
+            <small>Box Escape page views</small>
+        </div>
+
+        <div class="analytics-card">
+            <span class="analytics-label">Average Engagement</span>
+            <strong>1m 15s</strong>
+            <small>Presentation metric</small>
+        </div>
+
+    </div>
+
+
+    <!-- Event bar graph -->
+    <div class="analytics-panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <p class="eyebrow">EVENT ACTIVITY</p>
+                <h3>Event Count by Event Name</h3>
+            </div>
+
+            <span class="panel-number">119</span>
+
+        </div>
+
+
+        <div class="bar-chart">
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>Page Views</span>
+                    <strong>36</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>Scroll</span>
+                    <strong>29</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 80.5%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>Session Starts</span>
+                    <strong>29</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 80.5%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>First Visits</span>
+                    <strong>18</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 50%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Location analytics -->
+    <div class="analytics-panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <p class="eyebrow">AUDIENCE LOCATION</p>
+                <h3>Countries Engaged</h3>
+            </div>
+
+            <span class="panel-number">18</span>
+
+        </div>
+
+
+        <div class="bar-chart">
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>India</span>
+                    <strong>14</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>US</span>
+                    <strong>2</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 14.3%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>UK</span>
+                    <strong>1</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 7.1%;"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar-item">
+
+                <div class="bar-info">
+                    <span>Netherlands</span>
+                    <strong>1</strong>
+                </div>
+
+                <div class="bar-track">
+                    <div class="bar-fill" style="width: 7.1%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Engagement information -->
+    <div class="analytics-panel engagement-panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <p class="eyebrow">PLAYER INTEREST</p>
+                <h3>Engagement Overview</h3>
+            </div>
+
+            <span class="engagement-badge">Active</span>
+
+        </div>
+
+
+        <div class="engagement-content">
+
+            <div>
+                <span class="analytics-label">
+                    Average Engagement Time
+                </span>
+
+                <strong>1m 15s</strong>
+            </div>
+
+
+            <div>
+                <span class="analytics-label">
+                    Engaged Sessions
+                </span>
+
+                <strong>29</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+                
+    <!-- Vertical Event Graph -->
+<div class="analytics-card">
+    <h3>Event Activity</h3>
+
+    <div class="vertical-chart">
+        <div class="vertical-bar-item">
+            <div class="vertical-bar" style="height: 100%;">
+                <span>36</span>
+            </div>
+            <p>Page Views</p>
+        </div>
+
+        <div class="vertical-bar-item">
+            <div class="vertical-bar" style="height: 80.5%;">
+                <span>29</span>
+            </div>
+            <p>Scrolls</p>
+        </div>
+
+        <div class="vertical-bar-item">
+            <div class="vertical-bar" style="height: 80.5%;">
+                <span>29</span>
+            </div>
+            <p>Sessions</p>
+        </div>
+
+        <div class="vertical-bar-item">
+            <div class="vertical-bar" style="height: 50%;">
+                <span>18</span>
+            </div>
+            <p>First Visits</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Horizontal City Graph -->
+<div class="analytics-card">
+    <h3>Visitors by City</h3>
+
+    <div class="horizontal-chart">
+        <div class="city-row">
+            <span>Indore</span>
+            <div class="city-track">
+                <div class="city-fill" style="width: 100%;"></div>
+            </div>
+            <strong>6</strong>
+        </div>
+
+        <div class="city-row">
+            <span>Bhopal</span>
+            <div class="city-track">
+                <div class="city-fill" style="width: 50%;"></div>
+            </div>
+            <strong>3</strong>
+        </div>
+
+        <div class="city-row">
+            <span>Gwalior</span>
+            <div class="city-track">
+                <div class="city-fill" style="width: 50%;"></div>
+            </div>
+            <strong>3</strong>
+        </div>
+
+        <div class="city-row">
+            <span>Kota</span>
+            <div class="city-track">
+                <div class="city-fill" style="width: 16.6%;"></div>
+            </div>
+            <strong>1</strong>
+        </div>
+
+        <div class="city-row">
+            <span>Mumbai</span>
+            <div class="city-track">
+                <div class="city-fill" style="width: 16.6%;"></div>
+            </div>
+            <strong>1</strong>
+        </div>
+    </div>
+</div>
+
+    <!-- Engagement information -->
+    <div class="analytics-panel engagement-panel">
+        <div class="panel-heading">
+            <div>
+                <p class="eyebrow">PLAYER INTEREST</p>
+                <h3>Engagement Overview</h3>
+            </div>
+
+            <span class="engagement-badge">Active</span>
+        </div>
+
+        <div class="engagement-content">
+            <div>
+                <span class="analytics-label">Average Engagement Time</span>
+                <strong>1m 15s</strong>
+            </div>
+
+            <div>
+                <span class="analytics-label">Engaged Sessions</span>
+                <strong>29</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+  </main>
+
+
+  <!-- CODE ARCHIVE MODAL -->
+  <div class="modal" id="codeModal">
+
+    <div class="modal-box">
+
+      <button class="close-modal" id="closeModalButton">
+        ×
+      </button>
+
+      <p class="eyebrow">CODE ARCHIVE</p>
+
+      <h2 id="archiveTitle">
+        Version 1 Notes
+      </h2>
+
+      <p id="archiveText">
+        Paste your original code, screenshots or development notes here.
+      </p>
+
+      <pre id="codeDisplay">
+Your version notes will appear here.
+      </pre>
+
+    </div>
+
+  </div>
+
+
+    
+
+    <!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+
+        <div class="footer-text">
+            <p>Built as part of my Box Escape learning journey.</p>
+            <p>© 2026 Box Escape</p>
+        </div>
+
+
+        <div class="social-links">
+
+            <a
+                href="https://www.instagram.com/YOUR_USERNAME/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+                Instagram
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/YOUR_USERNAME/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+            >
+                LinkedIn
+            </a>
+
+            <a
+                href="https://x.com/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+            >
+                X
+            </a>
+
+            <a
+                href="https://github.com/YOUR_USERNAME"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+            >
+                GitHub
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+  <script>
+  window.addEventListener("load", function () {
+    const splashScreen = document.getElementById("splash-screen");
+
+    setTimeout(function () {
+      splashScreen.remove();
+    }, 5000);
+  });
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
